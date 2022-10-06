@@ -1,6 +1,6 @@
 # Social-Media-API
 
-*To Setup/Install
+* To Setup/Install
 > run npm install
-*To Run
+* To Run
 > run npm run dev
