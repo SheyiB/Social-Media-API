@@ -43,46 +43,6 @@ class MessagesService {
         })
     }
 
-    updatemessage(messageid, body){
-        return new Promise(async (resolve, reject) => {
-            try{
-                let message = await MessagesModel.findById(messageid)
-                if(!message){
-                    return reject({code: 404, msg: 'message not found' })
-                }
-                let newmessage = await MessagesModel.findByIdAndUpdate(messageid, body, {
-                        new: true,
-                        runValidators: true
-                    })
-                if(!newmessage){
-                    return reject({code: 401, msg: 'Cannot create message'})
-                }
-                resolve(newmessage)
-            }
-            catch(err){
-                reject(err)
-            }
-        })
-    }
-
-    deletemessage(messageid){
-        return new Promise(async (resolve, reject) => {
-            try{
-                let message = await MessagesModel.findById(messageid)
-                if(!message){
-                    return reject({code: 404, msg: 'message not found' })
-                }
-                let newmessage = await MessagesModel.findByIdAndDelete(messageid)
-                if(!newmessage){
-                    return reject({code: 401, msg: 'Cannot delete message'})
-                }
-                resolve()
-            }
-            catch(err){
-                reject(err)
-            }
-        })
-    }
 }
 
-module.exports = messageService
+module.exports =    MessagesService
