@@ -19,7 +19,7 @@ class MessagesService {
     getAllUserMessages(userid){
         return new Promise(async (resolve, reject) => {
             try{
-                const message = await MessagesModel.find({to: userid})
+                const message = await MessagesModel.find({$or: [{"to": userid}, {"from": userid}]})
 
                 return resolve(message)
             }
@@ -33,7 +33,7 @@ class MessagesService {
     getConversation(user1, user2){
         return new Promise(async (resolve, reject) => {
             try{
-                const message = await MessagesModel.find({$or: [{to: user1, from: user2}, {from: user2, to: user1}]} )
+                const message = await MessagesModel.find({$or: [{"to": user1, "from": user2}, {"from": user2, "to": user1}]} )
 
                 return resolve(message)
             }

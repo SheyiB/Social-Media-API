@@ -47,7 +47,7 @@ module.exports.getUserMessages = async (req, res, next) => {
 
 module.exports.getConversation = async (req, res, next) => {
   try {
-    const message = await Message.deleteMessage(req.params.user1, req.params.user2);
+    const message = await Message.getConversation(req.params.user1, req.params.user2);
 
       res.status(200).json({
         success: true,
