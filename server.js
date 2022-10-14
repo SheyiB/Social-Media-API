@@ -7,16 +7,21 @@ const AuthRoutes = require('./routes/auth.routes')
 const {connect} = require('./config/db')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
-
+const cors = require('cors')
 dotenv.config({path: "./config/private.env"})
 
 connect(process.env.URI)
+
 
 const app = express()
 
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 
+app.use(cors( {
+    origin: '*',
+
+  }))
 
 app.use('/smAPI/v1/user', UserRoutes)
 app.use('/smAPI/v1/posts', PostRoutes)
